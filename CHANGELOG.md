@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## v2026.04.11.3 — 2026-04-22
+
+### Changed (BREAKING)
+- Tool prefix: `linuxctl_env_*` → `linuxctl_stack_*` (7 tools) — matches upstream linuxctl v2026.04.11.8
+
+### Added — /stack-* skills
+- /linuxctl-stack-apply, /linuxctl-stack-diff, /linuxctl-stack-rollback, /linuxctl-stack-cluster-ssh
+
+### Details
+- 7 stack tools wrap the upstream `linuxctl stack` verb: `linuxctl_stack_new`, `_list`, `_use`,
+  `_current`, `_add`, `_remove`, `_show`.
+- Tool count: 32 → 39.
+- Bumped version `2026.4.11-2` → `2026.4.11-3`.
+
+Ref: itunified-io/infrastructure#389
+
 ## v2026.04.11.2 — 2026-04-22
 
 Added `linuxctl_ssh_setup_cluster` tool (32 tools total).

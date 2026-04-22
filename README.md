@@ -1,6 +1,6 @@
 # @itunified.io/mcp-linuxctl
 
-> MCP server for `linuxctl` — 32 tools wrapping the Linux host configuration CLI via `execFile`
+> MCP server for `linuxctl` — 39 tools wrapping the Linux host configuration CLI via `execFile`
 
 [![npm](https://img.shields.io/npm/v/@itunified.io/mcp-linuxctl)](https://www.npmjs.com/package/@itunified.io/mcp-linuxctl)
 [![License](https://img.shields.io/badge/license-AGPL--3.0-blue)](LICENSE)
@@ -57,7 +57,11 @@ npm install -g @itunified.io/mcp-linuxctl
 }
 ```
 
-## Tool Catalog (32)
+## Tool Catalog (39)
+
+> **Note:** In `linuxctl` v2026.04.11.8 the CLI verb `env` was renamed to `stack`.
+> MCP tools follow suit: the 7 stack tools are exposed as `linuxctl_stack_*`.
+
 
 | Tool | linuxctl | Confirm |
 |------|----------|---------|
@@ -92,11 +96,27 @@ npm install -g @itunified.io/mcp-linuxctl
 | `linuxctl_apply_rollback` | `apply rollback` | double-confirm |
 | `linuxctl_diff` | `diff` | none |
 | `linuxctl_ssh_setup_cluster` | `ssh setup-cluster` | standard |
+| `linuxctl_stack_new` | `stack new` | none |
+| `linuxctl_stack_list` | `stack list` | none |
+| `linuxctl_stack_use` | `stack use` | none |
+| `linuxctl_stack_current` | `stack current` | none |
+| `linuxctl_stack_add` | `stack add` | none |
+| `linuxctl_stack_remove` | `stack remove` | none |
+| `linuxctl_stack_show` | `stack show` | none |
 | `linuxctl_license_status` | `license status` | none |
 
 ## Skills
 
-Claude Code skills live in the [linuxctl repo](https://github.com/itunified-io/linuxctl) under `.claude/skills/` and will be published alongside the 1.0 release.
+Claude Code skills shipped with this MCP adapter (under `.claude/skills/`):
+
+| Skill | Description |
+|-------|-------------|
+| `/linuxctl-stack-apply <stack>` | Run the 13-manager orchestrator across every host in the stack (plan → apply → verify). |
+| `/linuxctl-stack-diff <stack>` | Read-only drift report aggregated across all hosts in the stack. |
+| `/linuxctl-stack-rollback <stack>` | Double-confirmed rollback of the last apply on every host. |
+| `/linuxctl-stack-cluster-ssh <stack>` | Set up passwordless SSH trust (default users: `grid`, `oracle`) across the stack. |
+
+See [`.claude/skills/README.md`](.claude/skills/README.md) for detailed references.
 
 ## Development
 
