@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## v2026.04.11.2 — 2026-04-22
+
+Added `linuxctl_ssh_setup_cluster` tool (32 tools total).
+
+- SSH: `linuxctl_ssh_setup_cluster` — wraps `linuxctl ssh setup-cluster <env.yaml>`, sets up
+  passwordless SSH across a cluster for the given users (default: `grid`, `oracle`). Generates
+  keys where missing and distributes `authorized_keys` across all hosts. Standard confirm gate
+  (creates SSH keys + mutates `authorized_keys`).
+- Params: `env` (yaml path, required), `users` (string[], optional, default `["grid","oracle"]`),
+  `parallel` (bool, optional, default true).
+- Bumped version `2026.4.11-1` → `2026.4.11-2`.
+
+Closes itunified-io/mcp-linuxctl#1 (ssh setup-cluster).
+Ref: itunified-io/infrastructure#389
+
 ## v2026.04.11.1 — 2026-04-22
 
 Initial scaffold. 31 tools wrapping the `linuxctl` Linux host configuration CLI via `execFile`.
