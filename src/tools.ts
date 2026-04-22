@@ -1,7 +1,7 @@
 import { z } from "zod";
 import type { ToolDefinition } from "./plugin.js";
 
-// ─── linuxctl tools (32) ────────────────────────────────────────────
+// ─── linuxctl tools (39) ────────────────────────────────────────────
 // Each tool maps 1:1 to a `linuxctl <domain> <action>` subcommand.
 // `target` is the host target (name from ~/.linuxctl/targets/ or a host ref).
 
@@ -267,6 +267,76 @@ export const tools: ToolDefinition[] = [
     },
     domain: "ssh",
     action: "setup-cluster",
+  },
+
+  // stack (matches upstream linuxctl v2026.04.11.8 `stack` verb,
+  // renamed from `env` in that release)
+  {
+    name: "linuxctl_stack_new",
+    description: "Create a new linuxctl stack (scaffold env.yaml + layer files)",
+    inputSchema: {
+      name: z.string().describe("Stack name (directory under infrastructure/envs/)"),
+      path: z
+        .string()
+        .optional()
+        .describe("Optional parent directory (default: infrastructure/envs/)"),
+    },
+    domain: "stack",
+    action: "new",
+  },
+  {
+    name: "linuxctl_stack_list",
+    description: "List all known linuxctl stacks",
+    inputSchema: {},
+    domain: "stack",
+    action: "list",
+  },
+  {
+    name: "linuxctl_stack_use",
+    description: "Switch the active linuxctl stack context",
+    inputSchema: {
+      name: z.string().describe("Stack name to activate"),
+    },
+    domain: "stack",
+    action: "use",
+  },
+  {
+    name: "linuxctl_stack_current",
+    description: "Show the currently active linuxctl stack",
+    inputSchema: {},
+    domain: "stack",
+    action: "current",
+  },
+  {
+    name: "linuxctl_stack_add",
+    description: "Add a host or layer file to the active stack",
+    inputSchema: {
+      stack: z.string().optional().describe("Stack name (default: active stack)"),
+      host: z.string().optional().describe("Host to add to the stack"),
+      layer: z.string().optional().describe("Layer file to add (e.g., hypervisor.yaml)"),
+    },
+    domain: "stack",
+    action: "add",
+  },
+  {
+    name: "linuxctl_stack_remove",
+    description: "Remove a host or layer file from a stack",
+    inputSchema: {
+      stack: z.string().optional().describe("Stack name (default: active stack)"),
+      host: z.string().optional().describe("Host to remove"),
+      layer: z.string().optional().describe("Layer file to remove"),
+    },
+    domain: "stack",
+    action: "remove",
+  },
+  {
+    name: "linuxctl_stack_show",
+    description: "Show the resolved env.yaml + layers for a stack",
+    inputSchema: {
+      stack: z.string().optional().describe("Stack name (default: active stack)"),
+    },
+    domain: "stack",
+    action: "show",
   },
 
   // license
