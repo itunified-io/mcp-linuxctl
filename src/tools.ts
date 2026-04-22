@@ -1,7 +1,7 @@
 import { z } from "zod";
 import type { ToolDefinition } from "./plugin.js";
 
-// ─── linuxctl tools (30) ────────────────────────────────────────────
+// ─── linuxctl tools (32) ────────────────────────────────────────────
 // Each tool maps 1:1 to a `linuxctl <domain> <action>` subcommand.
 // `target` is the host target (name from ~/.linuxctl/targets/ or a host ref).
 
@@ -247,6 +247,26 @@ export const tools: ToolDefinition[] = [
     inputSchema: { target },
     domain: "diff",
     action: "",
+  },
+
+  // ssh
+  {
+    name: "linuxctl_ssh_setup_cluster",
+    description:
+      "Set up passwordless SSH across a cluster for the given users (default: grid, oracle). Generates keys where missing and distributes authorized_keys across all hosts in the env.yaml (standard confirm).",
+    inputSchema: {
+      env: z.string().describe("Path to the env.yaml describing the cluster hosts"),
+      users: z
+        .array(z.string())
+        .optional()
+        .describe("Users to set up SSH for (default: [\"grid\", \"oracle\"])"),
+      parallel: z
+        .boolean()
+        .optional()
+        .describe("Run per-host operations in parallel (default: true)"),
+    },
+    domain: "ssh",
+    action: "setup-cluster",
   },
 
   // license

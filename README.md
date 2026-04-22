@@ -1,6 +1,6 @@
 # @itunified.io/mcp-linuxctl
 
-> MCP server for `linuxctl` — 30 tools wrapping the Linux host configuration CLI via `execFile`
+> MCP server for `linuxctl` — 32 tools wrapping the Linux host configuration CLI via `execFile`
 
 [![npm](https://img.shields.io/npm/v/@itunified.io/mcp-linuxctl)](https://www.npmjs.com/package/@itunified.io/mcp-linuxctl)
 [![License](https://img.shields.io/badge/license-AGPL--3.0-blue)](LICENSE)
@@ -57,7 +57,7 @@ npm install -g @itunified.io/mcp-linuxctl
 }
 ```
 
-## Tool Catalog (30)
+## Tool Catalog (32)
 
 | Tool | linuxctl | Confirm |
 |------|----------|---------|
@@ -91,6 +91,7 @@ npm install -g @itunified.io/mcp-linuxctl
 | `linuxctl_apply_verify` | `apply verify` | none |
 | `linuxctl_apply_rollback` | `apply rollback` | double-confirm |
 | `linuxctl_diff` | `diff` | none |
+| `linuxctl_ssh_setup_cluster` | `ssh setup-cluster` | standard |
 | `linuxctl_license_status` | `license status` | none |
 
 ## Skills

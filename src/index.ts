@@ -5,7 +5,7 @@ import { tools } from "./tools.js";
 
 const pkg = {
   name: "mcp-linuxctl",
-  version: "2026.4.11-1",
+  version: "2026.4.11-2",
 };
 
 const useSSE = process.argv.includes("--sse");
