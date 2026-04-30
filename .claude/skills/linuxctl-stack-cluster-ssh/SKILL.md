@@ -82,3 +82,17 @@ oracle:
 
 Result: 2 users × 3 hosts configured, trust mesh complete.
 ```
+
+## Plan RAG (infrastructure ADR-0096 v3)
+
+This skill follows the canonical plan template at
+`itunified-io/infrastructure/.claude/skills/_shared/PLAN_TEMPLATE.md`:
+
+- Enter plan mode first (`EnterPlanMode`); write canonical plan to the
+  active session plan file; `ExitPlanMode`; wait for operator approval
+  before any state-changing tool runs.
+- Reset TodoWrite at start with all planned steps as `pending`.
+- Shared step IDs across plan file row, TodoWrite, Bash description.
+- When invoked from `/lab-up`, append to the parent's prefix:
+  `"[/lab-up step 4 / linuxctl-stack-apply step N] …"`.
+- Update plan file at every phase boundary + material side effect.
